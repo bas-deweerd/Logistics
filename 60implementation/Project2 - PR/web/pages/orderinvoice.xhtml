@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <h:outputStylesheet name="style.css"  />
+        <title>Administration</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    </h:head>
+    <h:body>
+        <div class="pagetitle">
+            <h1>Customer Administration</h1>
+        </div>
+        <div id="tablecontainer">
+            <h:form id="table">
+                <header>
+                    <div class="searchbar">
+                        <h:inputText value="#{searchBean.customerSearchString}"/>
+                        <h:commandButton value="search" action="#{customerTableBean.searchListForSearchterm(searchBean.customerSearchString)}"></h:commandButton>
+                        <br />
+                    </div>
+                </header>
+                <f:event listener="#{customerTableBean.searchListForSearchterm(searchBean.customerSearchString)}" type="preRenderView" />
+                <div class="stroke_oi">
+                    <p:dataTable  id="customer"
+                                  style="width:auto;"
+                                  class="bs_admin"
+                                  value="#{customerTableBean.customer}" var="c"
+                                  selection="#{customerTableBean.selectedCustomer}"
+                                  rowKey="#{c.name}"
+                                  >
+                        <p:column>
+                            <f:facet name="header">Name</f:facet>
+                                #{c.name}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">Phone_nr</f:facet>
+                                #{c.phone_nr}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">Email</f:facet>
+                                #{c.email}
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Location</f:facet>
+                                #{c.location_nr}
+                        </p:column>
+                        <p:column >
+                            <p:commandButton process="customer" icon="ui-icon-search" value="View" oncomplete="PF('input3').show()" />
+                        </p:column>
+                    </p:dataTable>
+                </div>
+                <div class="button_divider">
+
+
+
+                    <p:dialog widgetVar="input3" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
+
+                        <h:panelGrid columns="2">
+                            <h:outputText value="Name: "/>
+
+                            <p:outputLabel value="#{customerBean.name}" id="name" /> 
+
+                            <h:outputText value="Phone number: "/>
+                            <p:inputText value="#{customerBean.phone_nr}" />
+                            <h:outputText value="Email: "/>
+                            <p:inputText value="#{customerBean.email}" />
+                            <h:outputText value="Location nr: "/>
+                            <p:inputText value="#{customerBean.location_nr}" />
+
+                            <p:commandButton action="#{customerBean.addCustomerOI()}" update=":table:customer" value="Add customer" onclick="PF('input3').hide();"/>
+                            <p:commandButton action="#{customerTableBean.clearSelected()}" update=":table" value="cancel" onclick="PF('input3').hide();"/>
+                        </h:panelGrid>
+
+                    </p:dialog>
+                </div>
+                <div class="button_divider">
+                    <p:commandButton class="buttonAdd" action="#{customerTableBean.deleteCustomer()}" update=":table:customer" value="Delete Customer"/>
+                </div>
+            </h:form>
+        </div>
+
+    </h:body>
+</html>

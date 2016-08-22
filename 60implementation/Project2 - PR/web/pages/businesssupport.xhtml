@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Business support</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet name="style.css"  />
+    </h:head>
+    <h:body>
+        <div id ="container">
+
+
+            <h:form>
+
+                <table>
+                    <tr>
+                        <td><div class="button">
+                                <br/>
+                                <h:commandLink class="buttonText" action="./administration.xhtml"  value="Administration">
+                                    <f:actionListener binding="#{truckTableBean.fillList()}" /> 
+                                    <f:actionListener binding="#{trailerTableBean.fillList()}" /> 
+                                    <f:actionListener binding="#{customerTableBean.fillList()}" /> 
+                                    <f:actionListener binding="#{truckerTableBean.fillList()}" /> 
+                                </h:commandLink>
+
+                            </div></td>
+                        <td><div class="button">
+                                <br/>
+                                <h:commandLink class="buttonText" action="./storage.xhtml" value="Storage"/>
+                            </div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="button">
+                                <br/>
+                                <h:commandLink class="buttonText" action="#{simpleLogin.logout}" value="Truck issues"/>
+                            </div></td>
+                        <td><div class="button">
+                                <br/>
+                                <h:commandLink class="buttonText" action="#{simpleLogin.logout}" value="Logout"/>
+                            </div></td>
+                    </tr>
+                </table>
+
+
+            </h:form>
+
+
+        </div>
+    </h:body>
+</html>

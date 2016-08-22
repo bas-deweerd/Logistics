@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <h:outputStylesheet name="style.css"  />
+        <title>Administration</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    </h:head>
+    <h:body>
+        <h:form class="backbutton">
+
+            <h:commandLink class="buttonText" action="./businesssupport.xhtml"  value="Back">
+
+            </h:commandLink>
+        </h:form>
+        <h:form>
+        <div class="button_divider">
+                    <p:commandButton class="buttonAdd" value="Add Truck" onclick="PF('input').show();"/>
+                    <p:dialog widgetVar="input" class="dialog">
+                        <h:panelGrid columns="3">
+                            <h:outputText value="Brand: "/>
+                            <p:selectOneMenu id="brand" value="#{truckBean.brand}">
+
+                                <f:selectItem itemValue="Scania" itemLabel="Scania" />
+                                <f:selectItem itemValue="MAN" itemLabel="MAN" />
+                                <f:selectItem itemValue="DAF" itemLabel="DAF" />
+                            </p:selectOneMenu>
+                            <h:outputText value=""/>
+                            <h:outputText value="Model: "/>
+                            <p:inputText value="#{truckBean.model}"/>
+                            <h:outputText value=""/>
+                            <h:outputText value="Buildyear:    "/>
+                            <p:selectOneMenu id="buildyear" value="#{truckBean.buildyear}" >
+                                <f:selectItem itemValue="2015" itemLabel="2015" />
+                                <f:selectItem itemValue="2014" itemLabel="2014" />
+                                <f:selectItem itemValue="2013" itemLabel="2013" />
+                                <f:selectItem itemValue="2012" itemLabel="2012" />
+                                <f:selectItem itemValue="2011" itemLabel="2011" />
+                                <f:selectItem itemValue="2010" itemLabel="2010" />
+                                <f:selectItem itemValue="2009" itemLabel="2009" />
+                                <f:selectItem itemValue="2008" itemLabel="2008" />
+                            </p:selectOneMenu>
+                            <h:outputText value=""/>
+                            <h:outputText value="Licenseplate: "/>
+                            <p:inputText value="#{truckBean.licenseplate}" id="trucklicense" title="Please enter like AA-BB-CC">
+                                
+                            </p:inputText>
+                                
+                            <h:outputText value=""/>
+                            <h:outputText value="Towing capacity: "/>
+                            <p:inputText value="#{truckBean.towing_cap}" converter="javax.faces.Double" converterMessage="Please enter digits only."/>
+                            <h:outputText value=""/>
+                            <p:commandButton action="#{truckBean.addTruck()}" update=":table:truck" value="Add Truck" onclick="PF('input').hide();"/>
+                        </h:panelGrid>
+
+                    </p:dialog>
+                </div>
+        
+        
+        <div class="button_divider">
+            <p:commandButton class="buttonAdd" value="Add Trailer" onclick="PF('input2').show();"/>
+            <p:dialog widgetVar="input2">
+
+                <h:panelGrid columns="3">
+                    <h:outputText value="Licenseplate: "/>
+
+                    <p:inputText value="#{trailerBean.licenseplate}" id="trailerlicense" title="Please enter like AA-BB-CC">
+                        
+                    </p:inputText>
+                    <h:outputText value=""/>
+                    <h:outputText value="Loading capacity: "/>
+                    <p:inputText value="#{trailerBean.loading_cap}"  converter="javax.faces.Double" converterMessage="Please enter digits only." />
+                    <h:outputText value=""/>
+                    <p:commandButton action="#{trailerBean.addTrailer()}" update=":table:trailer" value="Add trailer" onclick="PF('input2').hide();"/>
+                </h:panelGrid>
+
+            </p:dialog>
+        </div>
+        <div class="button_divider">
+            <p:commandButton class="buttonAdd" value="Add Customer" onclick="PF('input3').show();"/>
+            <p:dialog widgetVar="input3">
+
+                <h:panelGrid columns="3">
+                    <h:outputText value="Name: "/>
+                    <p:inputText value="#{customerBean.name}" />
+                    <h:outputText value=""/>
+                    <h:outputText value="Phone number: "/>
+                    <p:inputText value="#{customerBean.phone_nr}" />
+                    <h:outputText value=""/>
+                    <h:outputText value="Email: "/>
+                    <p:inputText value="#{customerBean.email}" id="customeremail" title="Please enter like customer@domain.tld">
+                       
+                    </p:inputText>
+                    <h:outputText value=""/>
+                    <h:outputText value="Location id: "/>
+                    <p:inputText value="#{customerBean.location_nr}" id="location"/>
+                    <h:outputText value=""/>
+                   
+
+                    <p:commandButton action="#{customerBean.addCustomer()}" update=":table:customer" value="Add customer" onclick="PF('input3').hide();"/>
+                </h:panelGrid>
+
+            </p:dialog>
+        </div>
+        <div class="button_divider">
+            <p:commandButton class="buttonAdd" value="Add Employee" onclick="PF('input4').show();"/>
+            <p:dialog widgetVar="input4">
+
+                <h:panelGrid columns="2">
+                    <h:outputText value="Name: "/>
+                    <p:inputText value="#{truckerBean.name}" />
+                    <h:outputText value="UserType: "/>
+                    <p:selectOneMenu id="userType" value="#{truckerBean.id}" >
+                        <f:selectItem itemValue="1" itemLabel="BusinessSupport" />
+                        <f:selectItem itemValue="2" itemLabel="CEO" />
+                        <f:selectItem itemValue="3" itemLabel="Truckdriver" />
+                        <f:selectItem itemValue="4" itemLabel="Order and invoices" />
+                        <f:selectItem itemValue="5" itemLabel="Planning" />
+
+                    </p:selectOneMenu>
+
+
+                    <p:commandButton action="#{truckerBean.addEmployee()}" update=":table:employee" value="Add employee" onclick="PF('input4').hide();"/>
+                </h:panelGrid>
+
+            </p:dialog>
+        </div>
+        </h:form>
+        
+        
+        
+        <h:form id="table">
+            <header>
+
+
+                <div class="searchbar">
+                    <p:outputLabel value="Trucks"/><br/>
+                    <h:inputText value="#{searchBean.truckSearchString}"/>
+                    <h:commandButton value="search" action="#{truckTableBean.searchListForSearchterm(searchBean.truckSearchString)}"></h:commandButton>
+                </div>
+                <div class="searchbar">
+                    <p:outputLabel value="Trailers"/><br/>
+                    <h:inputText value="#{searchBean.trailerSearchString}"/>
+                    <h:commandButton value="search" action="#{trailerTableBean.searchListForSearchterm(searchBean.trailerSearchString)}"></h:commandButton>             
+                </div>
+                <div class="searchbar">
+                    <p:outputLabel value="Customers"/><br/>
+                    <h:inputText value="#{searchBean.customerSearchString}"/>
+                    <h:commandButton value="search" action="#{customerTableBean.searchListForSearchterm(searchBean.customerSearchString)}"></h:commandButton>
+                </div>
+                <div class="searchbar">
+                    <p:outputLabel value="Employees"/><br/>
+                    <h:inputText value="#{searchBean.truckerSearchString}"/>
+                    <h:commandButton value="search" action="#{truckerTableBean.searchListForSearchterm(searchBean.truckerSearchString)}"></h:commandButton>
+                </div>
+
+
+
+            </header>
+
+            <div id="tablecontainer">
+
+                <f:event listener="#{truckTableBean.searchListForSearchterm(searchBean.truckSearchString)}" type="preRenderView" />
+                <f:event listener="#{trailerTableBean.searchListForSearchterm(searchBean.trailerSearchString)}" type="preRenderView" />
+                <f:event listener="#{customerTableBean.searchListForSearchterm(searchBean.customerSearchString)}" type="preRenderView" />
+                <f:event listener="#{truckerTableBean.searchListForSearchterm(searchBean.truckerSearchString)}" type="preRenderView" />
+                <div class="stroke">
+                    <p:dataTable id="truck"
+                                 class="bs_admin"
+                                 value="#{truckTableBean.truck}" var="t">
+                        <p:column style="width:10px">
+                            <f:facet name="header">Id</f:facet>
+                                #{t.truck_id}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">Brand</f:facet>
+                                #{t.brand}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">Model</f:facet>
+                                #{t.model}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">Buildyear</f:facet>
+                                #{t.buildyear}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">Licenseplate</f:facet>
+                                #{t.licenseplate}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">Towing_cap</f:facet>
+                                #{t.towing_cap}
+                        </p:column>
+                        <p:column style="width:10px">
+                            <p:selectBooleanCheckbox value="#{t.selected}"/>
+
+                        </p:column>
+
+                    </p:dataTable>
+
+                </div>
+
+                <div class="stroke">
+
+                    <p:dataTable class="bs_admin" value="#{trailerTableBean.trailer}" var="tr" id="trailer">
+                        <p:column>
+                            <f:facet name="header">Id</f:facet>
+                            <p:outputLabel value="#{tr.trailer_nr}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">Licenseplate</f:facet>
+                            <p:outputLabel value="#{tr.licenseplate}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">Loading_cap</f:facet>
+                            <p:outputLabel value="#{tr.loading_cap}"/>
+                        </p:column>
+                        <p:column >
+                            <p:selectBooleanCheckbox value="#{tr.selected}" >
+                                <p:ajax event="change" update="" />
+                            </p:selectBooleanCheckbox>
+                        </p:column>
+
+                    </p:dataTable>
+
+                </div>
+
+                <div class="stroke">
+                    <p:dataTable  id="customer"
+                                  style="width:auto;"
+                                  class="bs_admin"
+                                  value="#{customerTableBean.customer}" var="c"
+
+                                  >
+                        <p:column>
+                            <f:facet name="header">Name</f:facet>
+                                #{c.name}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">Phone_nr</f:facet>
+                                #{c.phone_nr}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">Email</f:facet>
+                                #{c.email}
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Location</f:facet>
+                                #{c.location_nr}
+                        </p:column>
+                        <p:column>
+                            <p:selectBooleanCheckbox value="#{c.selected}" >
+                                <p:ajax event="change" update="" />
+                            </p:selectBooleanCheckbox>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+                <div class="stroke">
+                    <p:dataTable 
+                        id="employee"
+                        class="bs_admin"
+                        value="#{truckerTableBean.trucker}" var="d"
+                        >
+                        <p:column>
+                            <f:facet name="header">Name</f:facet>
+                                #{d.name}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">ID</f:facet>
+                                #{d.id}
+                        </p:column>
+                        <p:column>
+                            <p:selectBooleanCheckbox value="#{d.selected}">
+                                
+                            </p:selectBooleanCheckbox>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+
+            </div>
+
+            <div id="footer" style="width:100%">
+
+                <div class="button_divider">
+                    <p:commandButton class="buttonAdd" action="#{truckTableBean.deleteTruck()}" update=":table" value="Delete Truck" />
+                </div>
+                <div class="button_divider">
+                    <p:commandButton class="buttonAdd" action="#{trailerTableBean.deleteTrailer()}" update=":table" value="Delete Trailer" >
+
+                    </p:commandButton>
+                </div>
+                <div class="button_divider">
+                    <p:commandButton class="buttonAdd" action="#{customerTableBean.deleteCustomer()}" update=":table" value="Delete Customer"/>
+                </div>
+                <div class="button_divider">
+                    <p:commandButton class="buttonAdd" action="#{truckerTableBean.deleteTruck()}" update=":table" value="Delete Employee"/>
+                </div>
+
+            </div>
+        </h:form>
+    </h:body>
+
+</html>

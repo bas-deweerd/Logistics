@@ -1,0 +1,155 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    height:100%;
+    font-family: Verdana;
+    overflow-x: hidden;
+}
+body {
+    background-color:#D8D8D8;
+}
+
+#main{
+    padding-bottom:-80px;
+    clear: both;
+}
+#container {
+    width:960px;
+    margin:0 auto;
+    margin-top:375px;
+    padding-bottom:-80px;
+    text-align:center;
+}
+#tablecontainer{
+    
+    min-height:600px;
+    margin:0 auto;
+    margin-top:150px;
+    padding-bottom:-80px;
+
+    
+}
+.pagetitle{
+    text-align: center;
+}
+.stroke{
+    width: 25%;
+    float:left;
+    
+}
+.stroke_oi{
+    width: 50%;
+    float:left;
+    
+}
+.stroke_s{
+    width: 33%;
+    float:left;
+    
+}
+table.bs_admin{
+    display: inline-block;
+    float:left;
+    
+}
+th.bs_admin{
+    width:200%;
+    background-color: navy;
+    color: white;
+}
+th.bs_admin {
+    border: 1px solid cyan;
+    white-space: nowrap;
+    
+}
+
+table.bs_admin{
+    border: 1px solid black;
+    width: 24.8%
+    
+}
+
+.button{
+    background-image: url('../images/button.png');
+    width: 354px;
+    height: 80px;
+    margin-bottom: 150px;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+.buttonText{
+    font-size: 30px;
+    padding-top: 20px;
+    text-decoration: none;
+    color: black;font-size: 30px;
+    padding-top: 20px;
+
+}
+.button_divider{
+    float: left;
+    width:24.8%;
+    text-align:center;
+    height: 40px;
+    background-image: url('../images/button2.png');
+    border: 1px solid white;
+}
+.dialog{
+    text-align: left;
+    width: 200px;
+    
+}
+.ui-selectonemenu{
+     width: 96% !important;
+}
+.ui-selectonemenu-label{
+     width: 96% !important;
+}  
+.button_divider_s{
+    float: left;
+    width:33%;
+    text-align:center;
+    height: 40px;
+    background-image: url('../images/button2.png');
+    border: 1px solid white;
+}
+a:hover{
+    color: cyan;
+}
+table{
+    
+    max-widht:240px;
+    float: left;
+}
+.buttonAdd{
+    width:100%;
+    text-decoration: none;
+    color : black;
+    
+    
+}
+.backbutton{
+    background-image: url('../images/button2.png');
+    width: 100px;
+    text-align: center;
+}
+.searchbar_s{
+    float: left;
+    width:33%;
+    text-align:center;
+    height: 40px;
+    
+}
+.searchbar{
+    float: left;
+    width:24.8%;
+    text-align:center;
+    height: 80px;
+    
+}
+#footer{
+    margin-top:50px;
+    float:bottom;
+    }

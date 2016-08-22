@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Add a truck</title>
+        <h:outputStylesheet name="style.css"  />
+    </h:head>
+
+    <h:body >
+        <h:form>
+
+            <h:outputText value="Brand: " />
+            <h:selectOneMenu id="brand" value="#{truckBean.brand}">
+                
+                <f:selectItem itemValue="Scania" itemLabel="Scania" />
+                <f:selectItem itemValue="MAN" itemLabel="MAN" />
+                <f:selectItem itemValue="DAF" itemLabel="DAF" />
+            </h:selectOneMenu><br /><br />
+
+            <h:outputText value="Model: " />
+            <h:inputText id="model" value="#{truckBean.model}" /><br /><br />
+            
+            <h:outputText value="Buildyear: " />
+            <h:selectOneMenu id="buildyear" value="#{truckBean.buildyear}">
+                <f:selectItem itemValue="2015" itemLabel="2015" />
+                <f:selectItem itemValue="2014" itemLabel="2014" />
+                <f:selectItem itemValue="2013" itemLabel="2013" />
+                <f:selectItem itemValue="2012" itemLabel="2012" />
+                <f:selectItem itemValue="2011" itemLabel="2011" />
+                <f:selectItem itemValue="2010" itemLabel="2010" />
+                <f:selectItem itemValue="2009" itemLabel="2009" />
+                <f:selectItem itemValue="2008" itemLabel="2008" />
+            </h:selectOneMenu><br /><br />
+            
+            <h:outputText value="Licenseplate nr: " />
+            <h:inputText id="licenseplate" value="#{truckBean.licenseplate}" />   Please enter as AA-BB-CC<br /><br />
+            
+            <h:outputText value="Towing capacity (in tonns): " />
+            <h:inputText id="tow_capacity" value="#{truckBean.towing_cap}" /><br /><br />
+
+            <p:commandButton value="Add truck" 
+                             action="#{truckBean.addTruck()}">
+            
+            
+            </p:commandButton>
+
+        </h:form>
+    </h:body>
+</html>

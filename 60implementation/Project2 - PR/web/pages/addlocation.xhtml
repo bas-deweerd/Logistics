@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Add a location</title>
+        <h:outputStylesheet name="style.css"  />
+    </h:head>
+
+    <h:body >
+        <h:form>
+
+            <h:outputText value="Company name: " />
+            <h:inputText id="company_name" value="#ToDo" /><br /><br />
+
+            <h:outputText value="Address: " />
+            <h:inputText id="address" value="#ToDo" /><br /><br />
+            
+            <h:outputText value="City: " />
+            <h:inputText id="city" value="#ToDo" /><br /><br />
+            
+            <h:outputText value="Country: " />
+            <h:selectOneMenu id="country" value="">
+                <f:selectItem itemValue="Netherlands" itemLabel="Netherlands" />
+                <f:selectItem itemValue="Germany" itemLabel="Germany" />
+                <f:selectItem itemValue="Belgium" itemLabel="Belgium" />
+                <f:selectItem itemValue="United Kingdom" itemLabel="United Kingdom" />
+                <f:selectItem itemValue="France" itemLabel="France" />
+                <f:selectItem itemValue="Luxembourg" itemLabel="Luxembourg" />
+            </h:selectOneMenu><br /><br />
+
+            <h:commandButton value="Add location" 
+                             action="#ToDo"/>
+
+        </h:form>
+    </h:body>
+</html>

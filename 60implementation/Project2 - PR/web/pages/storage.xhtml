@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <h:outputStylesheet name="style.css"  />
+        <title>Administration</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    </h:head>
+    <h:body>
+        <h:form class="backbutton">
+
+            <h:commandLink class="buttonText" action="./businesssupport.xhtml"  value="Back">
+
+            </h:commandLink>
+        </h:form>
+        <h:form id="table">
+            <header>
+
+
+                <div class="searchbar_s">
+                    <h:inputText value="#{searchBean.truckSearchString}"/>
+                    <h:commandButton value="search" action="#{truckTableBean.searchListForSearchterm(searchBean.truckSearchString)}"></h:commandButton>
+                </div>
+                <div class="searchbar_s">
+                    <h:inputText value="#{searchBean.trailerSearchString}"/>
+                    <h:commandButton value="search" action="#{trailerTableBean.searchListForSearchterm(searchBean.trailerSearchString)}"></h:commandButton>             
+                </div>
+                <div class="searchbar_s">
+                    <h:inputText value="#{searchBean.customerSearchString}"/>
+                    <h:commandButton value="search" action="#{customerTableBean.searchListForSearchterm(searchBean.customerSearchString)}"></h:commandButton>
+                </div>
+
+
+
+
+            </header>
+
+            <div id="tablecontainer">
+
+                <f:event listener="#{locationTableBean.searchListForSearchterm(searchBean.truckSearchString)}" type="preRenderView" />
+                <f:event listener="#{trailerTableBean.searchListForSearchterm(searchBean.trailerSearchString)}" type="preRenderView" />
+                <f:event listener="#{customerTableBean.searchListForSearchterm(searchBean.customerSearchString)}" type="preRenderView" />
+
+                <div class="stroke_s">
+                    <p:dataTable id="location"
+                        class="bs_admin"
+                        value="#{locationTableBean.location}" var="l">
+                        <p:column style="width:10px">
+                            <f:facet name="header">Id</f:facet>
+                                #{l.id}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">Company Name</f:facet>
+                                #{l.companyName}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">address</f:facet>
+                                #{l.adress}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">city</f:facet>
+                                #{l.city}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">country</f:facet>
+                                #{l.country}
+                        </p:column>
+
+                        <p:column style="width:10px">
+                            <p:selectBooleanCheckbox value="#{l.selected}"/>
+
+                        </p:column>
+
+                    </p:dataTable>
+
+                </div>
+
+                <div class="stroke_s">
+
+                    <p:dataTable class="bs_admin" value="#{trailerTableBean.trailer}" var="tr">
+                        <p:column>
+                            <f:facet name="header">Id</f:facet>
+                            <p:outputLabel value="#{tr.trailer_nr}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">Licenseplate</f:facet>
+                            <p:outputLabel value="#{tr.licenseplate}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">Loading_cap</f:facet>
+                            <p:outputLabel value="#{tr.loading_cap}"/>
+                        </p:column>
+                        <p:column >
+                            <p:selectBooleanCheckbox value="#{tr.selected}" >
+                                <p:ajax event="change" update="" />
+                            </p:selectBooleanCheckbox>
+                        </p:column>
+
+                    </p:dataTable>
+
+                </div>
+
+                <div class="stroke_s">
+                    <p:dataTable 
+                        style="width:auto;"
+                        class="bs_admin"
+                        value="#{customerTableBean.customer}" var="c"
+
+                        >
+                        <p:column>
+                            <f:facet name="header">Name</f:facet>
+                                #{c.name}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">Phone_nr</f:facet>
+                                #{c.phone_nr}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">Email</f:facet>
+                                #{c.email}
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Location</f:facet>
+                                #{c.location_nr}
+                        </p:column>
+                        <p:column>
+                            <h:selectBooleanCheckbox>
+
+                            </h:selectBooleanCheckbox>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+
+            </div>
+
+            <div id="footer" style="width:100%">
+
+                <div class="button_divider_s" style="width:33%">
+                    <p:commandButton class="buttonAdd" action="#{locationTableBean.deleteLocation()}" update=":table" value="Delete Location" />
+                </div>
+                <div class="button_divider_s">
+                    <p:commandButton class="buttonAdd" action="#{trailerTableBean.deleteTrailer()}" update=":table" value="Delete Trailer" >
+
+                    </p:commandButton>
+                </div>
+                <div class="button_divider_s">
+                    <p:commandButton class="buttonAdd" action="./addtrailer.xhtml" value="Delete Customer"/>
+                </div>
+
+
+            </div>
+        </h:form>
+        <div id="footer" style="width:100%">
+            <h:form>
+                <div class="button_divider_s">
+                    <p:commandButton class="buttonAdd" value="Add Location" onclick="PF('input').show();"/>
+                    <p:dialog widgetVar="input">
+                        <h:panelGrid columns="2">
+                        <h:outputText value="Company Name: "/>
+                        <p:inputText value="#{locationBean.companyName}"/>
+                        <h:outputText value="Adress: "/>
+                        <p:inputText value="#{locationBean.adress}">
+                            <f:validator validatorId="adressvalidator"/>
+                        </p:inputText>
+                        <h:outputText value="City:"/>
+                        <p:inputText value="#{locationBean.city}"/>
+                        <h:outputText value="Country: "/>
+                        <p:inputText value="#{locationBean.country}"/>
+                        <p:commandButton action="#{locationBean.addLocation()}" update=":table:location" value="Add location" onclick="PF('input').hide();"/>
+                        </h:panelGrid>
+                        
+                    </p:dialog>
+                </div>
+                <div class="button_divider_s">
+                    <p:commandButton class="buttonAdd" action="./addtrailer.xhtml" value="Add Trailer"/>
+                </div>
+                <div class="button_divider_s">
+                    <p:commandButton class="buttonAdd" action="./addtrailer.xhtml" value="Add Customer"/>
+                </div>
+
+            </h:form>
+
+
+        </div>
+    </h:body>
+
+</html>
